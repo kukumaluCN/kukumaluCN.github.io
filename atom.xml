@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>霖溦之境</title>
+  
+  <subtitle>霖溦的个人博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://github.com/kukumaluCN/kukumaluCN.github.io/"/>
+  <updated>2018-07-30T07:12:05.307Z</updated>
+  <id>https://github.com/kukumaluCN/kukumaluCN.github.io/</id>
+  
+  <author>
+    <name>霖溦</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo+Github搭建个人博客</title>
+    <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/30/Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/30/Hexo-Github搭建个人博客/</id>
+    <published>2018-07-30T06:59:56.000Z</published>
+    <updated>2018-07-30T07:12:05.307Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要介绍了通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1.安装Node.js"></a>1.安装Node.js</h2><p>通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行<code>nvm</code>命令，报<code>-bash: npm: command not found</code>错误，只好重头做起，在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>官网下载包安装，也很方便。</p><p><a href="https://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a>一文中提到的，使用Homebrew安装Node.js的命令如下，请注意其中的注释：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span> brew install nvm</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> mkdir ~/.nvm</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> export NVM_DIR=~/.nvm</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> . $(brew --prefix nvm)/nvm.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> nvm install 4 //这里是大坑，这个指定了安装的版本，截止到本文书写时，node的版本已经到8.x了</span><br></pre></td></tr></table></figure><p>个人建议还是直接去官网下载包安装。</p><h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><p>这个是提交之后的内容必备的，Mac自带了git，就不再赘述。</p><h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h2><p>终端命令如下（Hexo官网上的安装命令是<code>$ npm install -g hexo-cli</code>，安装时要在前面加上sudo，否则会因为权限问题报错）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo npm install -g hexo</span><br></pre></td></tr></table></figure><h2 id="4-初始化Hexo"><a href="#4-初始化Hexo" class="headerlink" title="4.初始化Hexo"></a>4.初始化Hexo</h2><p>终端cd到自己选定的一个文件夹（之后所有的hexo相关的文件都将安装在文件夹中）的上一层级目录（选定的文件夹包含于该层级下），执行hexo init命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /Users/...</span><br><span class="line"><span class="meta">$</span> hexo init XXX //XXX是对应的自己建立的文件夹的名字，用于存放之后关于hexo的所有文件</span><br></pre></td></tr></table></figure><p>cd到XXX文件夹下，安装npm：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd XXX</span><br><span class="line"><span class="meta">$</span> npm install</span><br></pre></td></tr></table></figure><h2 id="5-测试hexo"><a href="#5-测试hexo" class="headerlink" title="5.测试hexo"></a>5.测试hexo</h2><p>执行命令，开启hexo：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo s</span><br></pre></td></tr></table></figure><p>执行命令后，在浏览器中访问：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p><p>看到下面的页面，说明本地访问成功，hexo的初始化工作结束：</p><p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1ftogu5spj9j31kw0xj7wh.jpg" alt=""></p><p>执行下面的命令可以停止测试。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> Ctrl+C</span><br></pre></td></tr></table></figure><h2 id="6-建立Github关联的仓库"><a href="#6-建立Github关联的仓库" class="headerlink" title="6.建立Github关联的仓库"></a>6.建立Github关联的仓库</h2><p>在github新建一个仓库，仓库名固定为<code>github用户名.github.io</code>。</p><p>例如笔者的就是：<a href="https://github.com/kukumaluCN/kukumaluCN.github.io">kukumaluCN.github.io</a></p><p>获取到仓库的地址和git地址，后面使用。</p><h2 id="7-配置-config-yml文件"><a href="#7-配置-config-yml文件" class="headerlink" title="7.配置_config.yml文件"></a>7.配置_config.yml文件</h2><p>在之前的XXX文件夹下，有<code>_config.yml</code>文件，该文件是hexo的配置信息，因为不同版本，该文件的信息会有变化，所以网上的很多教程都不太适用，需要自己综合参考修改，下面的是根据笔者当前的配置列出的示例。</p><p>需要修改的基本信息如下，如果有其他需要，可以参考官网<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo配置</a>自行修改（注意冒号后面必须有空格）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 霖溦之境 #Hexo 博客标题</span><br><span class="line">subtitle: 霖溦的个人博客 #博客副标题</span><br><span class="line">description: 霖溦的个人博客</span><br><span class="line">author: 霖溦 #作者名</span><br><span class="line">language: zh-Hans #中文</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://github.com/kukumaluCN/kukumaluCN.github.io #github仓库的地址</span><br><span class="line">root: /</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><h2 id="8-安装hexo-deployer-git自动部署发布工具"><a href="#8-安装hexo-deployer-git自动部署发布工具" class="headerlink" title="8.安装hexo-deployer-git自动部署发布工具"></a>8.安装hexo-deployer-git自动部署发布工具</h2><p>执行命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><h2 id="9-发布hexo"><a href="#9-发布hexo" class="headerlink" title="9.发布hexo"></a>9.发布hexo</h2><p>修改完上述配置后，可以再次hexo s执行一次测试，看看修改后的效果。没有问题就可以发布了。</p><p>在XXX文件夹下生成静态页面，执行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><p>这是三个命令，clean是清理缓存，g就是generate生成静态文件，d是deploy也就是最终的部署。</p><p>具体的命令参考官网：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Hexo指令</a></p><p>执行上述命令时，可能因为没有关联github提示输入github的用户名和密码（<strong>参考第10条，可能是deploy中repo的设置问题，改成ssh就不会遇到该提示了，前提是你的github绑定了ssh key</strong>）。</p><h2 id="10-发布文章"><a href="#10-发布文章" class="headerlink" title="10.发布文章"></a>10.发布文章</h2><p>cd到XXX目录下，执行命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo new "title" //title是要发布的文章的标题</span><br></pre></td></tr></table></figure><p>title是要发布的文章的标题，具体规范参考<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Hexo指令</a>中关于new的一项。</p><p>执行之后，会在/XXX/source/_posts路径下生成“title.md”文件，具体的书写就是标准的markdown语法了，可以自行使用习惯的md编辑器书写。</p><p>文章编辑完之后执行如下命令发布：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><p>期间遇到了如下错误：  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">remote: Invalid username or password.</span><br><span class="line">fatal: Authentication failed for &apos;https://github.com/kukumaluCN/kukumaluCN.github.io.git/&apos;</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure><p>本以为是SSH key的问题，结果发现设置过了，经过实验，发现是配置文件的问题：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Deployment</span><br><span class="line"><span class="meta">#</span># Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line"><span class="meta">#</span>repo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址</span><br><span class="line">repo: git@github.com:kukumaluCN/kukumaluCN.github.io.git #改成ssh地址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><h2 id="11-更换主题"><a href="#11-更换主题" class="headerlink" title="11.更换主题"></a>11.更换主题</h2><p>Hexo的主题有很多，具体参考：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Thems</a><br>这里以<a href="https://www.haomwei.com/technology/maupassant-hexo.html" target="_blank" rel="noopener">maupassant</a>主题为例：<br>cd XXX到刚才的目录。<br>执行如下命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant</span><br><span class="line"><span class="meta">$</span> npm install hexo-renderer-pug --save</span><br><span class="line"><span class="meta">$</span> npm install hexo-renderer-sass --save</span><br></pre></td></tr></table></figure><p>再次修改配置文件_config.yml，将theme的值改为maupassant。<br>编辑完之后执行如下命令发布：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol><li><a href="https://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a></li><li><a href="https://www.jianshu.com/p/13e64c9e2295" target="_blank" rel="noopener">Mac上搭建基于GitHub的Hexo博客</a></li><li><a href="https://yegod.github.io/blog-1/" target="_blank" rel="noopener">如何搭建自己的博客</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文主要介绍了通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本
+      
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于霖溦之境</title>
+    <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/27/%E5%85%B3%E4%BA%8E%E9%9C%96%E6%BA%A6%E4%B9%8B%E5%A2%83/"/>
+    <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/27/关于霖溦之境/</id>
+    <published>2018-07-27T09:34:16.000Z</published>
+    <updated>2018-07-30T07:05:47.903Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里是霖溦的个人博客，从今天开始将在这里陆续更新博文，博文内容不限于iOS开发技术，也包含个人爱好的点滴。</p><p><strong>写于 2018.7.27</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这里是霖溦的个人博客，从今天开始将在这里陆续更新博文，博文内容不限于iOS开发技术，也包含个人爱好的点滴。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;写于 2018.7.27&lt;/strong&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="介绍" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E9%9A%8F%E7%AC%94/%E4%BB%8B%E7%BB%8D/"/>
+    
+    
+      <category term="关于" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/%E5%85%B3%E4%BA%8E/"/>
+    
+  </entry>
+  
+</feed>
