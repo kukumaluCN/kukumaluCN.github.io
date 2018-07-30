@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hexo+Github搭建个人博客]]></title>
+    <url>%2F%2Fblog%2F2018%2F07%2F30%2FHexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
+    <content type="text"><![CDATA[前言本文主要介绍了通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。 步骤1.安装Node.js通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行nvm命令，报-bash: npm: command not found错误，只好重头做起，在Node.js官网下载包安装，也很方便。 5分钟 搭建免费个人博客一文中提到的，使用Homebrew安装Node.js的命令如下，请注意其中的注释： 12345678910$ brew install nvm$ mkdir ~/.nvm$ export NVM_DIR=~/.nvm$ . $(brew --prefix nvm)/nvm.sh$ nvm install 4 //这里是大坑，这个指定了安装的版本，截止到本文书写时，node的版本已经到8.x了 个人建议还是直接去官网下载包安装。 2.安装Git这个是提交之后的内容必备的，Mac自带了git，就不再赘述。 3.安装Hexo终端命令如下（Hexo官网上的安装命令是$ npm install -g hexo-cli，安装时要在前面加上sudo，否则会因为权限问题报错）： 1$ sudo npm install -g hexo 4.初始化Hexo终端cd到自己选定的一个文件夹（之后所有的hexo相关的文件都将安装在文件夹中）的上一层级目录（选定的文件夹包含于该层级下），执行hexo init命令： 12$ cd /Users/...$ hexo init XXX //XXX是对应的自己建立的文件夹的名字，用于存放之后关于hexo的所有文件 cd到XXX文件夹下，安装npm： 12$ cd XXX$ npm install 5.测试hexo执行命令，开启hexo： 1$ hexo s 执行命令后，在浏览器中访问：http://localhost:4000/ 看到下面的页面，说明本地访问成功，hexo的初始化工作结束： 执行下面的命令可以停止测试。 1$ Ctrl+C 6.建立Github关联的仓库在github新建一个仓库，仓库名固定为github用户名.github.io。 例如笔者的就是：kukumaluCN.github.io 获取到仓库的地址和git地址，后面使用。 7.配置_config.yml文件在之前的XXX文件夹下，有_config.yml文件，该文件是hexo的配置信息，因为不同版本，该文件的信息会有变化，所以网上的很多教程都不太适用，需要自己综合参考修改，下面的是根据笔者当前的配置列出的示例。 需要修改的基本信息如下，如果有其他需要，可以参考官网Hexo配置自行修改（注意冒号后面必须有空格）： 123456789101112131415161718# Sitetitle: 霖溦之境 #Hexo 博客标题subtitle: 霖溦的个人博客 #博客副标题description: 霖溦的个人博客author: 霖溦 #作者名language: zh-Hans #中文# URL## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;url: https://github.com/kukumaluCN/kukumaluCN.github.io #github仓库的地址root: /# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy:type: gitrepo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址branch: master 8.安装hexo-deployer-git自动部署发布工具执行命令： 1$ npm install hexo-deployer-git --save 9.发布hexo修改完上述配置后，可以再次hexo s执行一次测试，看看修改后的效果。没有问题就可以发布了。 在XXX文件夹下生成静态页面，执行： 1$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 这是三个命令，clean是清理缓存，g就是generate生成静态文件，d是deploy也就是最终的部署。 具体的命令参考官网：Hexo指令 执行上述命令时，可能因为没有关联github提示输入github的用户名和密码（参考第10条，可能是deploy中repo的设置问题，改成ssh就不会遇到该提示了，前提是你的github绑定了ssh key）。 10.发布文章cd到XXX目录下，执行命令： 1$ hexo new "title" //title是要发布的文章的标题 title是要发布的文章的标题，具体规范参考Hexo指令中关于new的一项。 执行之后，会在/XXX/source/_posts路径下生成“title.md”文件，具体的书写就是标准的markdown语法了，可以自行使用习惯的md编辑器书写。 文章编辑完之后执行如下命令发布： 1$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 期间遇到了如下错误： 123remote: Invalid username or password.fatal: Authentication failed for &apos;https://github.com/kukumaluCN/kukumaluCN.github.io.git/&apos;FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html 本以为是SSH key的问题，结果发现设置过了，经过实验，发现是配置文件的问题： 1234567# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy:type: git#repo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址repo: git@github.com:kukumaluCN/kukumaluCN.github.io.git #改成ssh地址branch: master 11.更换主题Hexo的主题有很多，具体参考：Thems这里以maupassant主题为例：cd XXX到刚才的目录。执行如下命令： 123$ git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant$ npm install hexo-renderer-pug --save$ npm install hexo-renderer-sass --save 再次修改配置文件_config.yml，将theme的值改为maupassant。编辑完之后执行如下命令发布： 1$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 参考 5分钟 搭建免费个人博客 Mac上搭建基于GitHub的Hexo博客 如何搭建自己的博客]]></content>
+      <categories>
+        <category>技术博客</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于霖溦之境]]></title>
+    <url>%2F%2Fblog%2F2018%2F07%2F27%2F%E5%85%B3%E4%BA%8E%E9%9C%96%E6%BA%A6%E4%B9%8B%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[这里是霖溦的个人博客，从今天开始将在这里陆续更新博文，博文内容不限于iOS开发技术，也包含个人爱好的点滴。 写于 2018.7.27]]></content>
+      <categories>
+        <category>随笔</category>
+        <category>介绍</category>
+      </categories>
+      <tags>
+        <tag>关于</tag>
+      </tags>
+  </entry>
+</search>
