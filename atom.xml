@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/kukumaluCN/kukumaluCN.github.io/"/>
-  <updated>2018-07-31T07:26:44.763Z</updated>
+  <updated>2018-07-31T08:35:06.674Z</updated>
   <id>https://github.com/kukumaluCN/kukumaluCN.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UIViewController继承时父子类方法重名造成的一个crash</title>
+    <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/31/UIViewController%E7%BB%A7%E6%89%BF%E6%97%B6%E7%88%B6%E5%AD%90%E7%B1%BB%E6%96%B9%E6%B3%95%E9%87%8D%E5%90%8D%E9%80%A0%E6%88%90%E7%9A%84%E4%B8%80%E4%B8%AAcrash/"/>
+    <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/07/31/UIViewController继承时父子类方法重名造成的一个crash/</id>
+    <published>2018-07-31T05:30:44.000Z</published>
+    <updated>2018-07-31T08:35:06.674Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在开发过程中，遇到了一个因为UIViewController继承时父子类方法重名造成的一个crash问题，本文是问题的原因分析和解决方法。</p><h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="1-一个crash问题的分析"><a href="#1-一个crash问题的分析" class="headerlink" title="1.一个crash问题的分析"></a>1.一个crash问题的分析</h2><p>有如下父子类，<code>SubViewController</code>继承于<code>BaseViewController</code>，父子类中均有<code>-addConstraintsForSubviews</code>这个重名的私有方法。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//父类</span><br><span class="line">@implementation BaseViewController</span><br><span class="line">- (void)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [super viewDidLoad];    </span><br><span class="line">    //添加子视图</span><br><span class="line">    [self base_lazyLoadSubviews];</span><br><span class="line">    //添加约束</span><br><span class="line">    [self addConstraintsForSubviews];</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">//子类</span><br><span class="line">@implementation SubViewController</span><br><span class="line">- (void)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [super viewDidLoad];    </span><br><span class="line">    //添加子视图</span><br><span class="line">    [self sub_lazyLoadSubviews];</span><br><span class="line">    //添加约束</span><br><span class="line">    [self addConstraintsForSubviews];</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure><p>实际运行过程中，遇到了如下的crash：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Terminating app due to uncaught exception </span><br><span class="line">&apos;NSInvalidArgumentException&apos;, reason: </span><br><span class="line">&apos;NSLayoutConstraint for &lt;UIImageView: </span><br><span class="line">0x10bee7fa0; frame = (0 0; 0 0); opaque = NO; </span><br><span class="line">userInteractionEnabled = NO; layer = &lt;CALayer: </span><br><span class="line">0x17023ba00&gt;&gt;: A multiplier of 0 or a nil </span><br><span class="line">second item together with a location for the </span><br><span class="line">first attribute creates an illegal constraint </span><br><span class="line">of a location equal to a constant. Location </span><br><span class="line">attributes must be specified in pairs.&apos;</span><br></pre></td></tr></table></figure><p>上述的<code>-addConstraintsForSubviews</code>方法中有用到AutoLayout做自动布局，crash也是因为自动布局导致的。<br>经过断点调试，也就是走了一遍ViewController的生命周期方法，分析出了这个crash的原因：</p><ul><li>1.子类执行<code>-viewDidLoad</code>时，调用了<code>[super viewDidLoad]</code>，触发父类的<code>-viewDidLoad</code>。</li><li>2.父类的<code>-viewDidLoad</code>方法中实现了基础的UI加载和布局，也就是父类对应的<code>-base_lazyLoadSubviews</code>和<code>-addConstraintsForSubviews</code>这两个方法。</li><li>3.当父类执行这两个方法时，其实就已经有问题了，因为子类有同名的<code>-addConstraintsForSubviews</code>方法，导致父类的方法实现被子类覆盖了，此时父类会去调用子类的<code>-addConstraintsForSubviews</code>去布局。</li><li>4.子类此时还没有执行<code>-sub_lazyLoadSubviews</code>方法，也就是子类的视图控件还没有添加到父视图上，此时执行AutoLayout，就造成了crash。</li></ul><h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2.解决方法"></a>2.解决方法</h2><p>在父类增加一些共有的UI组件，某些情况下可以简化开发，但其实更多的时候，并没有省却很多麻烦。个人建议还是不要在公有的父类中增加过多的UI特性，以免日后更多的不必要的麻烦，子类过多，已经足够引起你的重视了。当然如果只是项目中的基类，用作埋点或其他用途，那么增加其他的UI特性，更是不合适的了。<br>下面只是基于上述问题，提出对应的解决方案。</p><h3 id="2-1-规范命名"><a href="#2-1-规范命名" class="headerlink" title="2.1.规范命名"></a>2.1.规范命名</h3><p>这其实是算是一个命名不规范导致的问题，如果是父类私有的方法，还是增加前缀比较安全，所以最简单的解决方式就是改名：<br><code>-base_addConstraintsForSubviews</code><br><code>-sub_addConstraintsForSubviews</code></p><h3 id="2-2-更加优雅的解决方式"><a href="#2-2-更加优雅的解决方式" class="headerlink" title="2.2.更加优雅的解决方式"></a>2.2.更加优雅的解决方式</h3><p>上一种方法其实并不是很好，因为可能遇到其他开发者继承于你的父类的问题，如果每次都要告知对方去注意这些问题，就很容易出问题了。<br>这里提出一种参考系统的生命周期方法中回调父类的方式去解决这个问题。<br>在父类中的头文件，声明子类容易覆写的同类型方法：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface BaseViewController : UIViewController</span><br><span class="line">- (void)lazyLoadSubviews NS_REQUIRES_SUPER;</span><br><span class="line">- (void)addConstraintsForSubviews NS_REQUIRES_SUPER;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure><p>方法声明过程中，使用了系统的宏<code>NS_REQUIRES_SUPER</code>来修饰，表示子类覆写该方法时，必须在方法内部调用super的这个方法，否则会有如下的警告（以系统的<code>UITableViewCell</code>的<code>-prepareForReuse</code>方法为例）：</p><p><img src="/kukumaluCN/kukumaluCN.github.io/blog/2018/07/31/UIViewController继承时父子类方法重名造成的一个crash/2018-07-31-UIViewController继承时父子类方法重名造成的一个crash/NS_REQUIRES_SUPER.png" alt="NS_REQUIRES_SUPER"></p><p>这样即便子类使用者在不知情的情况下，覆写了父类的同名方法，也会有警告提示，只要执行了父类的同名方法，就可以避免上述的问题发生。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol><li><a href="https://blog.csdn.net/shihuboke/article/details/78200339" target="_blank" rel="noopener">iOS 修饰符~ NS_UNAVAILABLE、NS_REQUIRES_SUPER</a></li><li><a href="https://www.dudas.co.uk/ns_requires_super/" target="_blank" rel="noopener">NS_REQUIRES_SUPER</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;最近在开发过程中，遇到了一个因为UIViewController继承时父子类方法重名造成的一个crash问题，本文是问题的原因分析和解决方法
+      
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/"/>
+    
+      <category term="开发随笔" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/iOS/"/>
+    
+      <category term="继承" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo+Github搭建个人博客</title>
