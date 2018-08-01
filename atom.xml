@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/kukumaluCN/kukumaluCN.github.io/"/>
-  <updated>2018-08-01T09:14:46.562Z</updated>
+  <updated>2018-08-01T09:17:01.341Z</updated>
   <id>https://github.com/kukumaluCN/kukumaluCN.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/08/01/CocoaPods%E4%B8%ADPBXSourcesBuildPhase-unknown-UUID%E7%9A%84%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/"/>
     <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/</id>
     <published>2018-08-01T09:07:01.000Z</published>
-    <updated>2018-08-01T09:14:46.562Z</updated>
+    <updated>2018-08-01T09:17:01.341Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>在执行<code>pod install</code>命令时，出现了如下的警告：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[!] `&lt;PBXResourcesBuildPhase UUID=`XXX`&gt;` </span><br><span class="line">attempted to initialize an object with an </span><br><span class="line">unknown UUID. `XXX` for attribute: `files`. </span><br><span class="line">This can be the result of a merge and  the </span><br><span class="line">unknown UUID is being discarded.</span><br></pre></td></tr></table></figure></p><p>解决方式如下：</p><ul><li>1.打开项目-&gt;Target-&gt;General-&gt;Linked Frameworks and Libraries，选中libpods-XXX.a，XXX是指你的项目名称，点“-”删除。</li><li>2.退出Xcode</li><li>3.重新执行pod install</li></ul><p><img src="http://pcriprrao.bkt.clouddn.com/2018-08-01-libpoda.png" alt="libpoda"></p><hr><blockquote><p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/" target="_blank" rel="noopener">https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p></blockquote>]]></content>
     
@@ -42,7 +42,7 @@
     <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/08/01/CocoaPods%E4%B8%AD%E7%9A%84Smart-quotes-were-detected-%E8%AD%A6%E5%91%8A/"/>
     <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/08/01/CocoaPods中的Smart-quotes-were-detected-警告/</id>
     <published>2018-08-01T08:46:36.000Z</published>
-    <updated>2018-08-01T09:14:28.503Z</updated>
+    <updated>2018-08-01T09:16:58.197Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>在执行<code>pod install</code>命令时，出现了如下的警告：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[!] Smart quotes were detected and ignored in </span><br><span class="line">your Podfile. To avoid issues in the future, </span><br><span class="line">you should not use TextEdit for editing it. </span><br><span class="line">If you are not using TextEdit, you should </span><br><span class="line">turn off smart quotes in your editor of choice.</span><br></pre></td></tr></table></figure></p><p>大致的意思是：在Podfile文件中，引号被智能的检测到并被忽略。</p><p>通过检查Podfile文件，发现了如下代码：</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target <span class="string">'Demo’ do</span></span><br></pre></td></tr></table></figure><p>这明显是因为输入法切换导致的右引号写成了中文的单引号，这个问题很难被发现，即便没什么影响，但是改一下就可以消除警告，何乐为不为：</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target <span class="string">'Demo'</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure><hr><blockquote><p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中的Smart-quotes-were-detected-警告/" target="_blank" rel="noopener">https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中的Smart-quotes-were-detected-警告/</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p></blockquote>]]></content>
     
