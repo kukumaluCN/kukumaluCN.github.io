@@ -3,12 +3,12 @@
   <entry>
     <title><![CDATA[CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决]]></title>
     <url>%2F%2Fblog%2F2018%2F08%2F01%2FCocoaPods%E4%B8%ADPBXSourcesBuildPhase-unknown-UUID%E7%9A%84%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%2F</url>
-    <content type="text"><![CDATA[Tips在执行pod install命令时，出现了如下的警告：12345[!] `&lt;PBXResourcesBuildPhase UUID=`XXX`&gt;` attempted to initialize an object with an unknown UUID. `XXX` for attribute: `files`. This can be the result of a merge and the unknown UUID is being discarded. 解决方式如下： 1.打开项目-&gt;Target-&gt;General-&gt;Linked Frameworks and Libraries，选中libpods-XXX.a，XXX是指你的项目名称，点“-”删除。 2.退出Xcode 3.重新执行pod install 本文作者：霖溦本文链接：https://kukumalucn.github.io版权声明：本博客所有文章除特别声明外，均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处！]]></content>
+    <content type="text"><![CDATA[Tips在执行pod install命令时，出现了如下的警告：12345[!] `&lt;PBXResourcesBuildPhase UUID=`XXX`&gt;` attempted to initialize an object with an unknown UUID. `XXX` for attribute: `files`. This can be the result of a merge and the unknown UUID is being discarded. 解决方式如下： 1.打开项目-&gt;Target-&gt;General-&gt;Linked Frameworks and Libraries，选中libpods-XXX.a，XXX是指你的项目名称，点“-”删除。 2.退出Xcode 3.重新执行pod install 本文作者：霖溦本文链接：https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/版权声明：本博客所有文章除特别声明外，均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处！]]></content>
   </entry>
   <entry>
     <title><![CDATA[CocoaPods中的Smart quotes were detected...警告]]></title>
     <url>%2F%2Fblog%2F2018%2F08%2F01%2FCocoaPods%E4%B8%AD%E7%9A%84Smart-quotes-were-detected-%E8%AD%A6%E5%91%8A%2F</url>
-    <content type="text"><![CDATA[Tips在执行pod install命令时，出现了如下的警告：12345[!] Smart quotes were detected and ignored in your Podfile. To avoid issues in the future, you should not use TextEdit for editing it. If you are not using TextEdit, you should turn off smart quotes in your editor of choice. 大致的意思是：在Podfile文件中，引号被智能的检测到并被忽略。 通过检查Podfile文件，发现了如下代码： 1target 'Demo’ do 这明显是因为输入法切换导致的右引号写成了中文的单引号，这个问题很难被发现，即便没什么影响，但是改一下就可以消除警告，何乐为不为： 1target 'Demo' do 本文作者：霖溦本文链接：https://kukumalucn.github.io版权声明：本博客所有文章除特别声明外，均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处！]]></content>
+    <content type="text"><![CDATA[Tips在执行pod install命令时，出现了如下的警告：12345[!] Smart quotes were detected and ignored in your Podfile. To avoid issues in the future, you should not use TextEdit for editing it. If you are not using TextEdit, you should turn off smart quotes in your editor of choice. 大致的意思是：在Podfile文件中，引号被智能的检测到并被忽略。 通过检查Podfile文件，发现了如下代码： 1target 'Demo’ do 这明显是因为输入法切换导致的右引号写成了中文的单引号，这个问题很难被发现，即便没什么影响，但是改一下就可以消除警告，何乐为不为： 1target 'Demo' do 本文作者：霖溦本文链接：https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中的Smart-quotes-were-detected-警告/版权声明：本博客所有文章除特别声明外，均采用 CC BY-NC-ND 4.0 许可协议。转载请注明出处！]]></content>
       <categories>
         <category>技术博客</category>
         <category>iOS</category>
