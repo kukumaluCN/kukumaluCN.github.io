@@ -106,20 +106,18 @@
 
 
 
-  <meta name="description" content="前言本文主要介绍了在Mac环境下，通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。 步骤1.安装Node.js通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行nvm命令，报-bash: npm: command not found错误，只好重头做起，在Node.js官网下载包安装，也很方便。5分钟 搭">
-<meta name="keywords" content="Hexo">
+  <meta name="description" content="前言平时开发过程中可能遇到这样的问题，就是在进行公司的项目开发时要用公司的git账号，以及对应的git仓库，比如gitlab的；对于个人的开源项目，又会有自己的git账号，以及对应的git仓库，比如github或者码云（gitee）。这时就会遇到多账户提交时的冲突问题，以及对应的多个ssh key的管理的问题。 正文1.多个ssh key的管理1.1.ssh key的创建假如有两个git账户，分别">
+<meta name="keywords" content="Git,SSH KEY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo+Github搭建个人博客">
-<meta property="og:url" content="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/07/30/Hexo-Github搭建个人博客/index.html">
+<meta property="og:title" content="一台电脑管理多个Git账户和SSH KEY">
+<meta property="og:url" content="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/02/一台电脑管理多个Git账户和SSH-KEY/index.html">
 <meta property="og:site_name" content="霖溦之境">
-<meta property="og:description" content="前言本文主要介绍了在Mac环境下，通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。 步骤1.安装Node.js通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行nvm命令，报-bash: npm: command not found错误，只好重头做起，在Node.js官网下载包安装，也很方便。5分钟 搭">
+<meta property="og:description" content="前言平时开发过程中可能遇到这样的问题，就是在进行公司的项目开发时要用公司的git账号，以及对应的git仓库，比如gitlab的；对于个人的开源项目，又会有自己的git账号，以及对应的git仓库，比如github或者码云（gitee）。这时就会遇到多账户提交时的冲突问题，以及对应的多个ssh key的管理的问题。 正文1.多个ssh key的管理1.1.ssh key的创建假如有两个git账户，分别">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pcriprrao.bkt.clouddn.com/2018-08-01-Hexo-Github搭建个人博客-测试hexo.jpg">
-<meta property="og:updated_time" content="2018-08-02T12:29:26.357Z">
+<meta property="og:updated_time" content="2018-08-05T11:30:36.007Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo+Github搭建个人博客">
-<meta name="twitter:description" content="前言本文主要介绍了在Mac环境下，通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。 步骤1.安装Node.js通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行nvm命令，报-bash: npm: command not found错误，只好重头做起，在Node.js官网下载包安装，也很方便。5分钟 搭">
-<meta name="twitter:image" content="http://pcriprrao.bkt.clouddn.com/2018-08-01-Hexo-Github搭建个人博客-测试hexo.jpg">
+<meta name="twitter:title" content="一台电脑管理多个Git账户和SSH KEY">
+<meta name="twitter:description" content="前言平时开发过程中可能遇到这样的问题，就是在进行公司的项目开发时要用公司的git账号，以及对应的git仓库，比如gitlab的；对于个人的开源项目，又会有自己的git账号，以及对应的git仓库，比如github或者码云（gitee）。这时就会遇到多账户提交时的冲突问题，以及对应的多个ssh key的管理的问题。 正文1.多个ssh key的管理1.1.ssh key的创建假如有两个git账户，分别">
 
 
 
@@ -128,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/07/30/Hexo-Github搭建个人博客/"/>
+  <link rel="canonical" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/02/一台电脑管理多个Git账户和SSH-KEY/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>Hexo+Github搭建个人博客 | 霖溦之境</title>
+  <title>一台电脑管理多个Git账户和SSH KEY | 霖溦之境</title>
   
 
 
@@ -342,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/07/30/Hexo-Github搭建个人博客/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/02/一台电脑管理多个Git账户和SSH-KEY/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="霖溦">
@@ -359,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo+Github搭建个人博客
+          <h1 class="post-title" itemprop="name headline">一台电脑管理多个Git账户和SSH KEY
               
             
           </h1>
@@ -384,7 +382,7 @@
                 
               
 
-              <time title="创建时间：2018-07-30 14:59:56" itemprop="dateCreated datePublished" datetime="2018-07-30T14:59:56+08:00">2018-07-30</time>
+              <time title="创建时间：2018-08-02 20:26:27" itemprop="dateCreated datePublished" datetime="2018-08-02T20:26:27+08:00">2018-08-02</time>
             
 
             
@@ -401,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-02 20:29:26" itemprop="dateModified" datetime="2018-08-02T20:29:26+08:00">2018-08-02</time>
+                <time title="修改时间：2018-08-05 19:30:36" itemprop="dateModified" datetime="2018-08-05T19:30:36+08:00">2018-08-05</time>
               
             
           </span>
@@ -425,7 +423,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术博客/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术博客/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -467,59 +465,70 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要介绍了在Mac环境下，通过Hexo+Github搭建个人博客的完整操作流程，笔者参考了部分现有的文章，通过实践，排除了一些坑，并多次尝试后，整理出本文。</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="1-安装Node-js"><a href="#1-安装Node-js" class="headerlink" title="1.安装Node.js"></a>1.安装Node.js</h2><p>通过Homebrew安装，会很便捷，但是事后遇到了重启终端，执行<code>nvm</code>命令，报<code>-bash: npm: command not found</code>错误，只好重头做起，在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>官网下载包安装，也很方便。<br><a href="https://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a>一文中提到的，使用Homebrew安装Node.js的命令如下，请注意其中的注释：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew install nvm</span><br><span class="line"><span class="meta">$</span> mkdir ~/.nvm</span><br><span class="line"><span class="meta">$</span> export NVM_DIR=~/.nvm</span><br><span class="line"><span class="meta">$</span> . $(brew --prefix nvm)/nvm.sh</span><br><span class="line"><span class="meta">$</span> nvm install 4 //这里是大坑，这个指定了安装的版本，截止到本文书写时，node的版本已经到8.x了</span><br></pre></td></tr></table></figure>
-<p>个人建议还是直接去官网下载包安装。</p>
-<h2 id="2-安装Git"><a href="#2-安装Git" class="headerlink" title="2.安装Git"></a>2.安装Git</h2><p>这个是提交之后的内容必备的，Mac自带了git，就不再赘述。</p>
-<h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h2><p>终端命令如下（Hexo官网上的安装命令是<code>$ npm install -g hexo-cli</code>，安装时要在前面加上sudo，否则会因为权限问题报错）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h2 id="4-初始化Hexo"><a href="#4-初始化Hexo" class="headerlink" title="4.初始化Hexo"></a>4.初始化Hexo</h2><p>终端cd到自己选定的一个文件夹（之后所有的hexo相关的文件都将安装在文件夹中）的上一层级目录（选定的文件夹包含于该层级下），执行hexo init命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /Users/...</span><br><span class="line"><span class="meta">$</span> hexo init XXX //XXX是对应的自己建立的文件夹的名字，用于存放之后关于hexo的所有文件</span><br></pre></td></tr></table></figure>
-<p>cd到XXX文件夹下，安装npm：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd XXX</span><br><span class="line"><span class="meta">$</span> npm install</span><br></pre></td></tr></table></figure>
-<h2 id="5-测试hexo"><a href="#5-测试hexo" class="headerlink" title="5.测试hexo"></a>5.测试hexo</h2><p>执行命令，开启hexo：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo s</span><br></pre></td></tr></table></figure>
-<p>执行命令后，在浏览器中访问：<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a><br>看到下面的页面，说明本地访问成功，hexo的初始化工作结束：</p>
-<p><img src="http://pcriprrao.bkt.clouddn.com/2018-08-01-Hexo-Github搭建个人博客-测试hexo.jpg" alt="Hexo-Github搭建个人博客-测试hexo"></p>
-<p>执行下面的命令可以停止测试。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> Ctrl+C</span><br></pre></td></tr></table></figure>
-<h2 id="6-建立Github关联的仓库"><a href="#6-建立Github关联的仓库" class="headerlink" title="6.建立Github关联的仓库"></a>6.建立Github关联的仓库</h2><p>在github新建一个仓库，仓库名固定为<code>github用户名.github.io</code>。</p>
-<p>例如笔者的就是：<a href="https://github.com/kukumaluCN/kukumaluCN.github.io">kukumaluCN.github.io</a></p>
-<p>获取到仓库的地址和git地址，后面使用。</p>
-<h2 id="7-配置-config-yml文件"><a href="#7-配置-config-yml文件" class="headerlink" title="7.配置_config.yml文件"></a>7.配置_config.yml文件</h2><p>在之前的XXX文件夹下，有<code>_config.yml</code>文件，该文件是hexo的配置信息，因为不同版本，该文件的信息会有变化，所以网上的很多教程都不太适用，需要自己综合参考修改，下面的是根据笔者当前的配置列出的示例。</p>
-<p>需要修改的基本信息如下，如果有其他需要，可以参考官网<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Hexo配置</a>自行修改（注意冒号后面必须有空格）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 霖溦之境 #Hexo 博客标题</span><br><span class="line">subtitle: 霖溦的个人博客 #博客副标题</span><br><span class="line">description: 霖溦的个人博客</span><br><span class="line">author: 霖溦 #作者名</span><br><span class="line">language: zh-Hans #中文</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://github.com/kukumaluCN/kukumaluCN.github.io #github仓库的地址</span><br><span class="line">root: /</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h2 id="8-安装hexo-deployer-git自动部署发布工具"><a href="#8-安装hexo-deployer-git自动部署发布工具" class="headerlink" title="8.安装hexo-deployer-git自动部署发布工具"></a>8.安装hexo-deployer-git自动部署发布工具</h2><p>执行命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<h2 id="9-发布hexo"><a href="#9-发布hexo" class="headerlink" title="9.发布hexo"></a>9.发布hexo</h2><p>修改完上述配置后，可以再次hexo s执行一次测试，看看修改后的效果。没有问题就可以发布了。</p>
-<p>在XXX文件夹下生成静态页面，执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<p>这是三个命令，clean是清理缓存，g就是generate生成静态文件，d是deploy也就是最终的部署。</p>
-<p>具体的命令参考官网：<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Hexo指令</a></p>
-<p>执行上述命令时，可能因为没有关联github提示输入github的用户名和密码（<strong>参考第10条，可能是deploy中repo的设置问题，改成ssh就不会遇到该提示了，前提是你的github绑定了ssh key</strong>）。</p>
-<h2 id="10-发布文章"><a href="#10-发布文章" class="headerlink" title="10.发布文章"></a>10.发布文章</h2><p>cd到XXX目录下，执行命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo new "title" //title是要发布的文章的标题</span><br></pre></td></tr></table></figure>
-<p>title是要发布的文章的标题，具体规范参考<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Hexo指令</a>中关于new的一项。</p>
-<p>执行之后，会在/XXX/source/_posts路径下生成“title.md”文件，具体的书写就是标准的markdown语法了，可以自行使用习惯的md编辑器书写。</p>
-<p>文章编辑完之后执行如下命令发布：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<p>期间遇到了如下错误：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">remote: Invalid username or password.</span><br><span class="line">fatal: Authentication failed for &apos;https://github.com/kukumaluCN/kukumaluCN.github.io.git/&apos;</span><br><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
-<p>本以为是SSH key的问题，结果发现设置过了，经过实验，发现是配置文件的问题：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Deployment</span><br><span class="line"><span class="meta">#</span># Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line"><span class="meta">#</span>repo: https://github.com/kukumaluCN/kukumaluCN.github.io.git #github仓库的git地址</span><br><span class="line">repo: git@github.com:kukumaluCN/kukumaluCN.github.io.git #改成ssh地址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h2 id="11-更换主题"><a href="#11-更换主题" class="headerlink" title="11.更换主题"></a>11.更换主题</h2><p>Hexo的主题有很多，具体参考：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Thems</a><br>这里以<a href="https://www.haomwei.com/technology/maupassant-hexo.html" target="_blank" rel="noopener">maupassant</a>主题为例：<br>cd XXX到刚才的目录。<br>执行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant</span><br><span class="line"><span class="meta">$</span> npm install hexo-renderer-pug --save</span><br><span class="line"><span class="meta">$</span> npm install hexo-renderer-sass --save</span><br></pre></td></tr></table></figure>
-<p>再次修改配置文件_config.yml，将theme的值改为maupassant。<br>编辑完之后执行如下命令发布：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平时开发过程中可能遇到这样的问题，就是在进行公司的项目开发时要用公司的git账号，以及对应的git仓库，比如gitlab的；对于个人的开源项目，又会有自己的git账号，以及对应的git仓库，比如github或者码云（gitee）。<br>这时就会遇到多账户提交时的冲突问题，以及对应的多个ssh key的管理的问题。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="1-多个ssh-key的管理"><a href="#1-多个ssh-key的管理" class="headerlink" title="1.多个ssh key的管理"></a>1.多个ssh key的管理</h2><h3 id="1-1-ssh-key的创建"><a href="#1-1-ssh-key的创建" class="headerlink" title="1.1.ssh key的创建"></a>1.1.ssh key的创建</h3><p>假如有两个git账户，分别是<a href="mailto:`github@example.com" target="_blank" rel="noopener">`github@example.com</a><code>和</code><a href="mailto:gitee@example.com" target="_blank" rel="noopener">gitee@example.com</a>`。为了提交git，我们需要设置对应的ssh key，ssh key具体其在对应平台的配置方法比较简单，本文不再详述，可参考对应的资料，这里只是ssh key的创建及管理。<br>在终端输入如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -C "github@example.com"</span><br></pre></td></tr></table></figure>
+<p>终端提示如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+<p>此时直接回车，就会在<code>/Users/XXX/.ssh/</code>路径下，创建一个名为<code>id_rsa</code>的公钥，这个并不是我们想要的，因为这里要设计多个ssh key的管理，这个命名没有任何特征。</p>
+<p>在终端中输入如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> /Users/XXX/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+<p>表示这个是github平台的key，之后根据终端提示，输入并确认密码，就可以生成了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /Users/XXX/.ssh/id_rsa_github.</span><br><span class="line">Your public key has been saved in /Users/XXX/.ssh/id_rsa_github.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>同理，另一个ssh key的创建流程如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-keygen -t rsa -C "gitee@example.com"</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/Users/XXX/.ssh/id_rsa): </span><br><span class="line"><span class="meta">$</span> /Users/XXX/.ssh/id_rsa_gitee</span><br><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /Users/XXX/.ssh/id_rsa_gitee.</span><br><span class="line">Your public key has been saved in /Users/XXX/.ssh/id_rsa_gitee.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-配置ssh代理"><a href="#1-2-配置ssh代理" class="headerlink" title="1.2.配置ssh代理"></a>1.2.配置ssh代理</h3><p>创建好了上面的多个ssh key就可以开始管理他们了。<br>在终端中输入如下命令，查询系统ssh key的代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-add -l</span><br></pre></td></tr></table></figure>
+<p>如果系统已经设置了代理，需要删除：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-add -D</span><br><span class="line">All identities removed.</span><br></pre></td></tr></table></figure>
+<p>如果提示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> exec ssh-agent bash</span><br></pre></td></tr></table></figure>
+<p>接下来添加刚才创建的ssh key的私钥：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//第一个</span><br><span class="line"><span class="meta">$</span> ssh-add ~/.ssh/id_rsa_github</span><br><span class="line">Enter passphrase for /Users/XXX/.ssh/id_rsa_github: </span><br><span class="line">Identity added: /Users/XXX/.ssh/id_rsa_github (/Users/XXX/.ssh/id_rsa_github)</span><br><span class="line"></span><br><span class="line">//第二个</span><br><span class="line"><span class="meta">$</span> ssh-add ~/.ssh/id_rsa_gitee</span><br><span class="line">Enter passphrase for /Users/XXX/.ssh/id_rsa_gitee: </span><br><span class="line">Identity added: /Users/XXX/.ssh/id_rsa_gitee (/Users/XXX/.ssh/id_rsa_gitee)</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-添加公钥"><a href="#1-3-添加公钥" class="headerlink" title="1.3.添加公钥"></a>1.3.添加公钥</h3><p>其实就是将对应的.pub中的内容，复制到对应平台的ssh key管理栏目中，不同的平台，位置不同，可以去对应的个人中心的设置中查看，很容易找到。</p>
+<h3 id="1-4-配置文件config"><a href="#1-4-配置文件config" class="headerlink" title="1.4.配置文件config"></a>1.4.配置文件config</h3><p>在/.ssh目录下创建config配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
+<p>熟悉vim的可以直接在终端中编辑这个config文件，不熟悉的，打开指定目录下新创建的config文件，直接文本编辑即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> github配置</span><br><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    User git</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> gitee配置</span><br><span class="line">Host gitee.com</span><br><span class="line">    HostName gitee.com</span><br><span class="line">    User git</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_gitee</span><br></pre></td></tr></table></figure>
+<p>编辑保存后，再次查看ssh key的代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh-add -l</span><br></pre></td></tr></table></figure>
+<p>如果看到如下，说明设置成功了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2048 SHA256:............ /Users/XXX/.ssh/id_rsa_github (RSA)</span><br><span class="line">2048 SHA256:............ /Users/XXX/.ssh/id_rsa_gitee (RSA)</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-验证ssh-key"><a href="#1-5-验证ssh-key" class="headerlink" title="1.5.验证ssh key"></a>1.5.验证ssh key</h3><p>终端中输入如下验证命令，如果返回如下，说明配置成功了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ssh -T git@github.com</span><br><span class="line">Hi XXXXXX! You've successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> ssh -T git@gitee.com</span><br><span class="line">Hi XXXXXX! You've successfully authenticated, but Gitee.com does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>如果遇到：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permission denied (publickey)</span><br></pre></td></tr></table></figure>
+<p>就是之前的公钥设置的问题，需要去对应的平台检查下ssh key公钥是否设置成功。<br>至此，ssh key的配置管理就结束了。</p>
+<h2 id="2-多个git账户的提交问题"><a href="#2-多个git账户的提交问题" class="headerlink" title="2.多个git账户的提交问题"></a>2.多个git账户的提交问题</h2><p>我们大多数人都会使用第三方工具进行git提交，比如source tree之类的，这些工具在提交时，如果不对对应的git仓库进行专门的配置，会默认走git的全局配置，也就是会用默认的全局配置的账户进行git提交。一不小心，就会用我们私人的账户，进行了公司项目的git提交，生成了对应的提交记录，也有可能因为权限问题，导致直接提交失败。<br>这时，我们需要对不同的仓库，进行对应的配置。</p>
+<h3 id="2-1-检查全局配置"><a href="#2-1-检查全局配置" class="headerlink" title="2.1.检查全局配置"></a>2.1.检查全局配置</h3><p>在终端中，分别输入如下命令，可以检查目前电脑中的git的全局配置信息，如果没有返回，说明没有全局配置，如果有，就可以看到对应的默认的账户是那个了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global user.name</span><br><span class="line"><span class="meta">$</span> git config --global user.email</span><br></pre></td></tr></table></figure>
+<p>为了避免麻烦，我们可以取消全局配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --global --unset user.name</span><br><span class="line"><span class="meta">$</span> git config --global --unset user.email</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-全局配置和局部配置"><a href="#2-2-全局配置和局部配置" class="headerlink" title="2.2.全局配置和局部配置"></a>2.2.全局配置和局部配置</h3><p>此时已经取消了电脑中默认的git全局配置信息，此时进行git提交，会报对应的找不到账户信息的错误。<br>我们可以cd到对应的git仓库的根目录下，执行局部git配置命令。比如<code>/Users/XXX/github/DemoProject</code>是一个在github平台托管的本地git仓库的根目录，我们可以执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd /Users/XXX/github/DemoProject</span><br><span class="line"><span class="meta">$</span> git config user.name</span><br><span class="line"><span class="meta">$</span> git config user.email</span><br></pre></td></tr></table></figure>
+<p>如果返回均为空，说明没有进行过局部配置，可以分别配置github的账户名和邮箱：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config user.name "github账户名"</span><br><span class="line"><span class="meta">$</span> git config user.email "github@example.com"</span><br></pre></td></tr></table></figure>
+<p>同理，在不同的git仓库下，可以分别配置不同平台的git账户名和git邮箱。这虽然看起来麻烦，不过，只要设置完成，之后只要不再更改对应的git仓库的路径，就不需要再更换配置了。<br><strong>而且，即便我们没有取消默认的全局git配置，在进行了局部配置后，后者的优先级会更高。</strong></p>
+<p>执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config --list</span><br></pre></td></tr></table></figure>
+<p>可以查看查看当前仓库的具体配置信息，在当前仓库目录下查看的配置是全局配置+当前项目的局部配置，<strong>使用的时候会优先使用当前仓库的局部配置，如果没有，才会去读取全局配置。</strong></p>
+<h3 id="2-3-hexo部署时的git提交问题"><a href="#2-3-hexo部署时的git提交问题" class="headerlink" title="2.3.hexo部署时的git提交问题"></a>2.3.hexo部署时的git提交问题</h3><p>因为我们先前取消了电脑中的git全局配置，hexo在部署发布时，可能遇到如下问题：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*** Please tell me who you are.</span><br><span class="line"></span><br><span class="line">Run</span><br><span class="line"></span><br><span class="line">  git config --global user.email "you@example.com"</span><br><span class="line">  git config --global user.name "Your Name"</span><br><span class="line"></span><br><span class="line">to set your account's default identity.</span><br><span class="line">Omit --global to set the identity only in this repository.</span><br></pre></td></tr></table></figure>
+<p>不知道是不是因为hexo必须要求读取全局配置，设置了几个文件夹的局部git配置，均无效，只好又恢复了全局配置，也就是对应的github的账户信息，因为之前提到过，局部配置的优先级大于全局配置，所以不用担心账户冲突的问题，只要设置好对应仓库的局部配置信息，就不用担心全局配置的存在。<br>当然，这只是折中的方案，如果有人知道如何配置hexo仓库的局部配置信息，欢迎指教。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li><a href="https://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a></li>
-<li><a href="https://www.jianshu.com/p/13e64c9e2295" target="_blank" rel="noopener">Mac上搭建基于GitHub的Hexo博客</a></li>
-<li><a href="https://yegod.github.io/blog-1/" target="_blank" rel="noopener">如何搭建自己的博客</a></li>
+<li><a href="https://blog.csdn.net/wwmusic/article/details/51027458" target="_blank" rel="noopener">一台电脑如何管理多个SSH KEY</a></li>
+<li><a href="https://www.jianshu.com/p/a869072a0092" target="_blank" rel="noopener">同一台电脑关于多个SSH KEY管理</a></li>
+<li><a href="https://blog.csdn.net/yanzhenjie1003/article/details/69487932?locationNum=4&amp;fps=1" target="_blank" rel="noopener">Git管理多个SSH密钥，Git多帐号配置</a></li>
+<li><a href="http://www.cnblogs.com/zichi/p/4704824.html" target="_blank" rel="noopener">如何配置多个ssh key</a></li>
+<li><a href="https://blog.csdn.net/baidu_35738377/article/details/54580156" target="_blank" rel="noopener">Git配置多账号登录不同项目</a></li>
+<li><a href="https://blog.csdn.net/luohai859/article/details/50679859" target="_blank" rel="noopener">Git全局配置和单个仓库的用户名邮箱配置</a></li>
+<li><a href="https://www.cnblogs.com/chenwolong/p/GIT.html" target="_blank" rel="noopener">GIT 常用命令</a></li>
 </ol>
 <hr>
 <blockquote>
-<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io/blog/2018/07/30/Hexo-Github搭建个人博客/" target="_blank" rel="noopener">https://kukumalucn.github.io/blog/2018/07/30/Hexo-Github搭建个人博客/</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p>
+<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io" target="_blank" rel="noopener">https://kukumalucn.github.io</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p>
 </blockquote>
 
       
@@ -570,7 +579,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/SSH-KEY/" rel="tag"># SSH KEY</a>
           
         </div>
       
@@ -583,8 +594,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/07/27/关于霖溦之境/" rel="next" title="关于霖溦之境">
-                <i class="fa fa-chevron-left"></i> 关于霖溦之境
+              <a href="/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/" rel="next" title="CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决">
+                <i class="fa fa-chevron-left"></i> CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决
               </a>
             
           </div>
@@ -592,10 +603,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/07/31/UIViewController继承时父子类方法重名造成的一个crash/" rel="prev" title="UIViewController继承时父子类方法重名造成的一个crash">
-                UIViewController继承时父子类方法重名造成的一个crash <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -810,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装Git"><span class="nav-number">2.2.</span> <span class="nav-text">2.安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装Hexo"><span class="nav-number">2.3.</span> <span class="nav-text">3.安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-初始化Hexo"><span class="nav-number">2.4.</span> <span class="nav-text">4.初始化Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-测试hexo"><span class="nav-number">2.5.</span> <span class="nav-text">5.测试hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-建立Github关联的仓库"><span class="nav-number">2.6.</span> <span class="nav-text">6.建立Github关联的仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-配置-config-yml文件"><span class="nav-number">2.7.</span> <span class="nav-text">7.配置_config.yml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-安装hexo-deployer-git自动部署发布工具"><span class="nav-number">2.8.</span> <span class="nav-text">8.安装hexo-deployer-git自动部署发布工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-发布hexo"><span class="nav-number">2.9.</span> <span class="nav-text">9.发布hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-发布文章"><span class="nav-number">2.10.</span> <span class="nav-text">10.发布文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-更换主题"><span class="nav-number">2.11.</span> <span class="nav-text">11.更换主题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-多个ssh-key的管理"><span class="nav-number">2.1.</span> <span class="nav-text">1.多个ssh key的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-ssh-key的创建"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.ssh key的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-配置ssh代理"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2.配置ssh代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-添加公钥"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3.添加公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-配置文件config"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4.配置文件config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-验证ssh-key"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.5.验证ssh key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-多个git账户的提交问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.多个git账户的提交问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-检查全局配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1.检查全局配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-全局配置和局部配置"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.全局配置和局部配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-hexo部署时的git提交问题"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3.hexo部署时的git提交问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
