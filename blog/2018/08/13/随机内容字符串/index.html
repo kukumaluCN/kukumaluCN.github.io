@@ -106,20 +106,18 @@
 
 
 
-  <meta name="description" content="Tips在执行pod install命令时，出现了如下的警告：12345[!] `&amp;lt;PBXResourcesBuildPhase UUID=`XXX`&amp;gt;` attempted to initialize an object with an unknown UUID. `XXX` for attribute: `files`. This can be the result of a me">
-<meta name="keywords" content="iOS,CocoaPods">
+  <meta name="description" content="前言我们再平时开发过程中，可能需要一些随机内容的字符串用于测试，例如：任意长度的内容字符串，测试我们的tableView的cell的高度自适应，这类测试有利于发现一些隐藏的bug。 正文1.随机长度的字符串比较简单的做法是，有一个固定的字符串，我们去取其随机长度的子串。 12NSString *str = @&amp;quot;测试字符串&amp;quot;;NSString *randomStr = [str">
+<meta name="keywords" content="iOS,随机数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决">
-<meta property="og:url" content="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/index.html">
+<meta property="og:title" content="随机内容字符串">
+<meta property="og:url" content="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/13/随机内容字符串/index.html">
 <meta property="og:site_name" content="霖溦之境">
-<meta property="og:description" content="Tips在执行pod install命令时，出现了如下的警告：12345[!] `&amp;lt;PBXResourcesBuildPhase UUID=`XXX`&amp;gt;` attempted to initialize an object with an unknown UUID. `XXX` for attribute: `files`. This can be the result of a me">
+<meta property="og:description" content="前言我们再平时开发过程中，可能需要一些随机内容的字符串用于测试，例如：任意长度的内容字符串，测试我们的tableView的cell的高度自适应，这类测试有利于发现一些隐藏的bug。 正文1.随机长度的字符串比较简单的做法是，有一个固定的字符串，我们去取其随机长度的子串。 12NSString *str = @&amp;quot;测试字符串&amp;quot;;NSString *randomStr = [str">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pcriprrao.bkt.clouddn.com/2018-08-01-libpoda.png">
-<meta property="og:updated_time" content="2018-08-02T12:29:23.044Z">
+<meta property="og:updated_time" content="2018-08-13T09:22:41.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决">
-<meta name="twitter:description" content="Tips在执行pod install命令时，出现了如下的警告：12345[!] `&amp;lt;PBXResourcesBuildPhase UUID=`XXX`&amp;gt;` attempted to initialize an object with an unknown UUID. `XXX` for attribute: `files`. This can be the result of a me">
-<meta name="twitter:image" content="http://pcriprrao.bkt.clouddn.com/2018-08-01-libpoda.png">
+<meta name="twitter:title" content="随机内容字符串">
+<meta name="twitter:description" content="前言我们再平时开发过程中，可能需要一些随机内容的字符串用于测试，例如：任意长度的内容字符串，测试我们的tableView的cell的高度自适应，这类测试有利于发现一些隐藏的bug。 正文1.随机长度的字符串比较简单的做法是，有一个固定的字符串，我们去取其随机长度的子串。 12NSString *str = @&amp;quot;测试字符串&amp;quot;;NSString *randomStr = [str">
 
 
 
@@ -128,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/"/>
+  <link rel="canonical" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/13/随机内容字符串/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决 | 霖溦之境</title>
+  <title>随机内容字符串 | 霖溦之境</title>
   
 
 
@@ -342,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/kukumaluCN/kukumaluCN.github.io/blog/2018/08/13/随机内容字符串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="霖溦">
@@ -359,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CocoaPods中PBXSourcesBuildPhase unknown UUID的错误解决
+          <h1 class="post-title" itemprop="name headline">随机内容字符串
               
             
           </h1>
@@ -384,24 +382,12 @@
                 
               
 
-              <time title="创建时间：2018-08-01 17:07:01" itemprop="dateCreated datePublished" datetime="2018-08-01T17:07:01+08:00">2018-08-01</time>
+              <time title="创建时间：2018-08-13 13:51:43 / 修改时间：17:22:41" itemprop="dateCreated datePublished" datetime="2018-08-13T13:51:43+08:00">2018-08-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-02 20:29:23" itemprop="dateModified" datetime="2018-08-02T20:29:23+08:00">2018-08-02</time>
               
             
           </span>
@@ -432,7 +418,7 @@
                   ，
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术博客/iOS/开发Tips/" itemprop="url" rel="index"><span itemprop="name">开发Tips</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术博客/iOS/开发随笔/" itemprop="url" rel="index"><span itemprop="name">开发随笔</span></a></span>
 
                 
                 
@@ -474,17 +460,21 @@
       
 
       
-        <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>在执行<code>pod install</code>命令时，出现了如下的警告：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[!] `&lt;PBXResourcesBuildPhase UUID=`XXX`&gt;` </span><br><span class="line">attempted to initialize an object with an </span><br><span class="line">unknown UUID. `XXX` for attribute: `files`. </span><br><span class="line">This can be the result of a merge and  the </span><br><span class="line">unknown UUID is being discarded.</span><br></pre></td></tr></table></figure></p>
-<p>解决方式如下：</p>
-<ul>
-<li>1.打开项目-&gt;Target-&gt;General-&gt;Linked Frameworks and Libraries，选中libpods-XXX.a，XXX是指你的项目名称，点“-”删除。</li>
-<li>2.退出Xcode</li>
-<li>3.重新执行pod install</li>
-</ul>
-<p><img src="http://pcriprrao.bkt.clouddn.com/2018-08-01-libpoda.png" alt="libpoda"></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们再平时开发过程中，可能需要一些随机内容的字符串用于测试，例如：任意长度的内容字符串，测试我们的tableView的cell的高度自适应，这类测试有利于发现一些隐藏的bug。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="1-随机长度的字符串"><a href="#1-随机长度的字符串" class="headerlink" title="1.随机长度的字符串"></a>1.随机长度的字符串</h2><p>比较简单的做法是，有一个固定的字符串，我们去取其随机长度的子串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = @&quot;测试字符串&quot;;</span><br><span class="line">NSString *randomStr = [str substringToIndex:arc4random_uniform((uint32_t)(str.length))];</span><br></pre></td></tr></table></figure>
+<h2 id="2-利用CCRandomGenerateBytes生成随机字符串"><a href="#2-利用CCRandomGenerateBytes生成随机字符串" class="headerlink" title="2.利用CCRandomGenerateBytes生成随机字符串"></a>2.利用CCRandomGenerateBytes生成随机字符串</h2><p>这个方法参考这里：<a href="https://blog.csdn.net/u012198553/article/details/78707197" target="_blank" rel="noopener">ios CCRandomGenerateBytes 生成定长随机字符串</a><br>可以生成任意长度的，随机的字母和数字组合的字符串，他本质是用作生成随机密钥的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//利用CCRandomGenerateBytes生成随机字符串</span><br><span class="line">+ (NSString *)jxt_randomStringWithLength:(size_t)length</span><br><span class="line">&#123;</span><br><span class="line">    if (length &lt; 1) &#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    length = length*0.5;</span><br><span class="line">    unsigned char digest[length];</span><br><span class="line">    CCRNGStatus status = CCRandomGenerateBytes(digest, length);</span><br><span class="line">    if (status == kCCSuccess) &#123;</span><br><span class="line">        return [self private_jxt_stringFrom:digest length:length];</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将bytes转为字符串</span><br><span class="line">+ (NSString *)private_jxt_stringFrom:(unsigned char *)digest length:(size_t)length</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableString *string = [NSMutableString string];</span><br><span class="line">    for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">        [string appendFormat:@&quot;%02x&quot;,digest[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    return string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-指定位数随机数的生成"><a href="#3-指定位数随机数的生成" class="headerlink" title="3.指定位数随机数的生成"></a>3.指定位数随机数的生成</h2><p>这个一般用于验证码等随机密码的业务场合，常用的是生成4位或6位的随机数组合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//6位随机数</span><br><span class="line">[NSString stringWithFormat:@&quot;%06d&quot;, arc4random() % 1000000];</span><br><span class="line">//4位随机数</span><br><span class="line">[NSString stringWithFormat:@&quot;%04d&quot;, arc4random() % 10000];</span><br></pre></td></tr></table></figure>
+<p>上述的算法比较简单，但是当我们需要长度更大的随机数字时，这个算法就有局限了，因为arc4random()的取值范围是0～4294967295，针对这个问题，我们可以改进一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *)jxt_randomDigitsStringWithLength:(NSUInteger)length</span><br><span class="line">&#123;</span><br><span class="line">    NSString *randomDigits = @&quot;&quot;;</span><br><span class="line">    for (int i = 0; i &lt; length; i ++) &#123;</span><br><span class="line">        randomDigits = [randomDigits stringByAppendingFormat:@&quot;%d&quot;, (arc4random() % 10)];</span><br><span class="line">    &#125;</span><br><span class="line">    return randomDigits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然上述算法在性能上是比不上先前的两个的，所以要根据需求取舍。</p>
+<p><strong>Demo详见：<a href="https://github.com/kukumaluCN/JXT_iOS_Demos/tree/master/RandomStringForTest">RandomStringForTest</a></strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/u012198553/article/details/78707197" target="_blank" rel="noopener">ios CCRandomGenerateBytes 生成定长随机字符串</a></p>
 <hr>
 <blockquote>
-<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/" target="_blank" rel="noopener">https://kukumalucn.github.io/blog/2018/08/01/CocoaPods中PBXSourcesBuildPhase-unknown-UUID的错误解决/</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p>
+<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io" target="_blank" rel="noopener">https://kukumalucn.github.io</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p>
 </blockquote>
 
       
@@ -537,7 +527,7 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
+            <a href="/tags/随机数/" rel="tag"># 随机数</a>
           
         </div>
       
@@ -550,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/08/01/CocoaPods中的Smart-quotes-were-detected-警告/" rel="next" title="CocoaPods中的Smart quotes were detected...警告">
-                <i class="fa fa-chevron-left"></i> CocoaPods中的Smart quotes were detected...警告
+              <a href="/blog/2018/08/09/用结构体初始化大量布局常数/" rel="next" title="用结构体初始化大量布局常数">
+                <i class="fa fa-chevron-left"></i> 用结构体初始化大量布局常数
               </a>
             
           </div>
@@ -559,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/08/02/一台电脑管理多个Git账户和SSH-KEY/" rel="prev" title="一台电脑管理多个Git账户和SSH KEY">
-                一台电脑管理多个Git账户和SSH KEY <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -781,7 +767,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips"><span class="nav-number">1.</span> <span class="nav-text">Tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-随机长度的字符串"><span class="nav-number">2.1.</span> <span class="nav-text">1.随机长度的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-利用CCRandomGenerateBytes生成随机字符串"><span class="nav-number">2.2.</span> <span class="nav-text">2.利用CCRandomGenerateBytes生成随机字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-指定位数随机数的生成"><span class="nav-number">2.3.</span> <span class="nav-text">3.指定位数随机数的生成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
