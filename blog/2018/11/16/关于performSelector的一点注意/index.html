@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://pcriprrao.bkt.clouddn.com/2018-11-16-perform不一样3.png">
 <meta property="og:image" content="http://pcriprrao.bkt.clouddn.com/2018-11-16-PerformSelectormacausealeak.png">
 <meta property="og:image" content="http://pcriprrao.bkt.clouddn.com/2018-11-16-PerformSelector官方注释2.png">
-<meta property="og:updated_time" content="2018-11-16T09:15:27.948Z">
+<meta property="og:updated_time" content="2018-11-16T09:18:16.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于performSelector的一点注意">
 <meta name="twitter:description" content="前言刚在群里看到这样一段代码，很有意思： 123456789101112- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    dispatch_async(dispatch_get_global_queue(0, 0), ^&amp;#123;        NSLog(@&quot;1&quot;">
@@ -390,7 +390,7 @@
                 
               
 
-              <time title="创建时间：2018-11-16 16:15:02 / 修改时间：17:15:27" itemprop="dateCreated datePublished" datetime="2018-11-16T16:15:02+08:00">2018-11-16</time>
+              <time title="创建时间：2018-11-16 16:15:02 / 修改时间：17:18:16" itemprop="dateCreated datePublished" datetime="2018-11-16T16:15:02+08:00">2018-11-16</time>
             
 
             
@@ -499,7 +499,7 @@
 <p><img src="http://pcriprrao.bkt.clouddn.com/2018-11-16-PerformSelectormacausealeak.png" alt="PerformSelectormacausealeak"></p>
 <p>我们很多人应该总是会被上述的警告所困扰，大多数人的解决方式，就是利用类似相面的方式去屏蔽警告，这种做法虽然简单，但实际是有风险的：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma clang diagnostic push</span></span><br><span class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-performSelector-leaks"</span></span></span><br><span class="line"><span class="comment">//code</span></span><br><span class="line"><span class="meta">#pragma clang diagnostic pop</span></span><br></pre></td></tr></table></figure>
-<p>其实除了利用<code>NSInvocation</code>那种比较高端的方式，更多的情况下，在方法没有返回值时，或者我们不需要返回值时，我们可以用：</p>
+<p>其实除了利用<code>IMP</code>或者<code>NSInvocation</code>那种比较“高端”的方式，更多的情况下，在方法没有返回值时，或者我们不需要返回值时，我们可以用：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSelector:<span class="keyword">@selector</span>(test) withObject:<span class="literal">nil</span> afterDelay:<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 <p>这种方式去避免警告的，看上面的那三个对比你就会发现，后两类API，同样是<code>performSelector</code>，却没有返回值，这其实也是有官方注释的依据的：</p>
 <p><img src="http://pcriprrao.bkt.clouddn.com/2018-11-16-PerformSelector官方注释2.png" alt="PerformSelector官方注释2"></p>
