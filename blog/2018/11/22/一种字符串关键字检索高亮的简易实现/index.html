@@ -115,7 +115,7 @@
 <meta property="og:description" content="前言 本文Demo地址：Demo，喜欢请star我的Demo集合：JXT_iOS_Demos，喜欢请star  平时开发中，我们总会不时的和富文本打交道。有时，我们需要用富文本高亮某句话中的某个关键字，如果这个关键字只出现一次，或者说这句话比较短，用- (NSRange)rangeOfString:(NSString *)searchString这个方法就可以很容易的确定这些关键字的range，如">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxgyvlfphmg30900g0e82.gif">
-<meta property="og:updated_time" content="2018-11-22T10:12:25.299Z">
+<meta property="og:updated_time" content="2018-11-22T10:25:25.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种字符串关键字检索高亮的简易实现">
 <meta name="twitter:description" content="前言 本文Demo地址：Demo，喜欢请star我的Demo集合：JXT_iOS_Demos，喜欢请star  平时开发中，我们总会不时的和富文本打交道。有时，我们需要用富文本高亮某句话中的某个关键字，如果这个关键字只出现一次，或者说这句话比较短，用- (NSRange)rangeOfString:(NSString *)searchString这个方法就可以很容易的确定这些关键字的range，如">
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="创建时间：2018-11-22 16:07:54 / 修改时间：18:12:25" itemprop="dateCreated datePublished" datetime="2018-11-22T16:07:54+08:00">2018-11-22</time>
+              <time title="创建时间：2018-11-22 16:07:54 / 修改时间：18:25:25" itemprop="dateCreated datePublished" datetime="2018-11-22T16:07:54+08:00">2018-11-22</time>
             
 
             
@@ -473,7 +473,8 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[attributedString.string jxt_enumerateRangeOfString:searchString usingBlock:^(<span class="built_in">NSRange</span> searchStringRange, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">    [attributedString addAttributes:@&#123;</span><br><span class="line">                                      <span class="built_in">NSForegroundColorAttributeName</span>:[<span class="built_in">UIColor</span> redColor],</span><br><span class="line">                                      <span class="built_in">NSBackgroundColorAttributeName</span>:[[<span class="built_in">UIColor</span> blueColor] colorWithAlphaComponent:<span class="number">0.2</span>],</span><br><span class="line">                                      &#125; range:searchStringRange];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <hr>
 <blockquote>
-<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io" target="_blank" rel="noopener">https://kukumalucn.github.io</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p>
+<p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io/blog/2018/11/22/一种字符串关键字检索高亮的简易实现/
+**版权声明：**本博客所有文章除特别声明外，均采用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">https://kukumalucn.github.io/blog/2018/11/22/一种字符串关键字检索高亮的简易实现/</a> 许可协议。转载请注明出处！</p>
 </blockquote>
 
       
