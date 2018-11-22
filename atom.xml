@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/kukumaluCN/kukumaluCN.github.io/"/>
-  <updated>2018-11-19T02:52:04.101Z</updated>
+  <updated>2018-11-22T10:12:25.299Z</updated>
   <id>https://github.com/kukumaluCN/kukumaluCN.github.io/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一种字符串关键字检索高亮的简易实现</title>
+    <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/11/22/%E4%B8%80%E7%A7%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%B3%E9%94%AE%E5%AD%97%E6%A3%80%E7%B4%A2%E9%AB%98%E4%BA%AE%E7%9A%84%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/11/22/一种字符串关键字检索高亮的简易实现/</id>
+    <published>2018-11-22T08:07:54.000Z</published>
+    <updated>2018-11-22T10:12:25.299Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote><p>本文Demo地址：<strong><a href="https://github.com/kukumaluCN/JXT_iOS_Demos/tree/master/JXTKit">Demo</a></strong>，喜欢请star<br>我的Demo集合：<strong><a href="https://github.com/kukumaluCN/JXT_iOS_Demos">JXT_iOS_Demos</a></strong>，喜欢请star</p></blockquote><p>平时开发中，我们总会不时的和富文本打交道。有时，我们需要用富文本高亮某句话中的某个关键字，如果这个关键字只出现一次，或者说这句话比较短，用<code>- (NSRange)rangeOfString:(NSString *)searchString</code>这个方法就可以很容易的确定这些关键字的<code>range</code>，如果是固定的一句话，那甚至可以将<code>range</code>写成固定值。但是如果是一篇文章，就会相对棘手些。<br>这个问题其实很像是关键字检索高亮的问题，网上有很多相关的算法甚至三方库，比如<strong><a href="https://github.com/IvanoBilenchi/ICTextView">ICTextView</a></strong>，下面提供一个十分简单的基于系统API的方法来解决这个问题，效果如下：</p><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxgyvlfphmg30900g0e82.gif" alt=""></p><h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><p>其实这个算法的核心就在于如何同时获取到字符串中重复出现的所有的子串的<code>range</code>，<code>- (NSRange)rangeOfString:(NSString *)searchString</code>方法只能获取到第一次出现的子串的<code>range</code>，设置<code>NSStringCompareOptions</code>，可以改变获取到的结果，但是也只能获取到一个，不知道系统有没有提供直接的方法，笔者暂时是没有发现……<br>简单的算法就是遍历，网上也有很多人提供了代码，但大部分都是多次遍历，效率肯定不会太好，经过调试和优化，笔者有了如下方法，通过几万字的字符串匹配验证，依旧可以保持在毫秒级，应该是可以适用于大部分简单的场景了，主要是算法相对于正则或者其他方式，简单易懂：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)jxt_enumerateRangeOfString:(<span class="built_in">NSString</span> *)searchString usingBlock:(<span class="keyword">void</span> (^)(<span class="built_in">NSRange</span> searchStringRange, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop))block</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span> isKindOfClass:[<span class="built_in">NSString</span> <span class="keyword">class</span>]] &amp;&amp; <span class="keyword">self</span>.length &amp;&amp;</span><br><span class="line">        [searchString isKindOfClass:[<span class="built_in">NSString</span> <span class="keyword">class</span>]] &amp;&amp; searchString.length) &#123;</span><br><span class="line">        <span class="built_in">NSArray</span> &lt;<span class="built_in">NSString</span> *&gt;*separatedArray = [<span class="keyword">self</span> componentsSeparatedByString:searchString];</span><br><span class="line">        <span class="keyword">if</span> (separatedArray.count &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">NSUInteger</span> count = separatedArray.count - <span class="number">1</span>; <span class="comment">//少遍历一次，因为拆分之后，最后一部分是没用的</span></span><br><span class="line">        <span class="built_in">NSUInteger</span> length = searchString.length;</span><br><span class="line">        __block <span class="built_in">NSUInteger</span> location = <span class="number">0</span>;</span><br><span class="line">        [separatedArray enumerateObjectsUsingBlock:^(<span class="built_in">NSString</span> * _Nonnull componentString, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</span><br><span class="line">            <span class="keyword">if</span> (idx == count) &#123;</span><br><span class="line">                *stop = <span class="literal">YES</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                location += componentString.length; <span class="comment">//跳过待筛选串前面的串长度</span></span><br><span class="line">                <span class="keyword">if</span> (block) &#123;</span><br><span class="line">                    block(<span class="built_in">NSMakeRange</span>(location, length), idx, stop);</span><br><span class="line">                &#125;</span><br><span class="line">                location += length; <span class="comment">//跳过待筛选串的长度</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>具体使用如下：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[attributedString.string jxt_enumerateRangeOfString:searchString usingBlock:^(<span class="built_in">NSRange</span> searchStringRange, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">    [attributedString addAttributes:@&#123;</span><br><span class="line">                                      <span class="built_in">NSForegroundColorAttributeName</span>:[<span class="built_in">UIColor</span> redColor],</span><br><span class="line">                                      <span class="built_in">NSBackgroundColorAttributeName</span>:[[<span class="built_in">UIColor</span> blueColor] colorWithAlphaComponent:<span class="number">0.2</span>],</span><br><span class="line">                                      &#125; range:searchStringRange];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure><hr><blockquote><p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io" target="_blank" rel="noopener">https://kukumalucn.github.io</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文Demo地址：&lt;strong&gt;&lt;a href=&quot;https://github.com/kukumaluCN/J
+      
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/"/>
+    
+      <category term="开发随笔" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/iOS/"/>
+    
+      <category term="NSString" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/NSString/"/>
+    
+      <category term="关键字" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+      <category term="检索" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>关于performSelector的一点注意</title>
