@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/kukumaluCN/kukumaluCN.github.io/"/>
-  <updated>2018-11-22T10:37:31.032Z</updated>
+  <updated>2018-12-05T02:11:12.414Z</updated>
   <id>https://github.com/kukumaluCN/kukumaluCN.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于转场动画中“Unbalanced calls to begin/end appearance transitions for &lt;UIViewController&gt;”警告的解决</title>
+    <link href="https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/12/05/%E5%85%B3%E4%BA%8E%E8%BD%AC%E5%9C%BA%E5%8A%A8%E7%94%BB%E4%B8%AD%E2%80%9CUnbalanced-calls-to-begin-end-appearance-transitions-for-UIViewController-%E2%80%9D%E8%AD%A6%E5%91%8A%E7%9A%84%E8%A7%A3%E5%86%B3/"/>
+    <id>https://github.com/kukumaluCN/kukumaluCN.github.io//blog/2018/12/05/关于转场动画中“Unbalanced-calls-to-begin-end-appearance-transitions-for-UIViewController-”警告的解决/</id>
+    <published>2018-12-05T01:56:07.000Z</published>
+    <updated>2018-12-05T02:11:12.414Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>最近学习转场动画时，参考了喵神的这篇文章：<a href="https://onevcat.com/2013/10/vc-transition-in-ios7/" target="_blank" rel="noopener">WWDC 2013 Session笔记 - iOS7中的ViewController切换</a>，文中有这样一段示例代码：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ContainerVC.m</span></span><br><span class="line"></span><br><span class="line">[<span class="keyword">self</span> addChildViewController:toVC];</span><br><span class="line">[fromVC willMoveToParentViewController:<span class="literal">nil</span>];</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:toVC.view];</span><br><span class="line"></span><br><span class="line">__<span class="keyword">weak</span> <span class="keyword">id</span> weakSelf = <span class="keyword">self</span>;</span><br><span class="line">[<span class="keyword">self</span> transitionFromViewController:fromVC</span><br><span class="line">                  toViewController:toVC duration:<span class="number">0.3</span></span><br><span class="line">                           options:<span class="built_in">UIViewAnimationOptionTransitionCrossDissolve</span></span><br><span class="line">                        animations:^&#123;&#125;</span><br><span class="line">                        completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">    [fromVC.view removeFromSuperView];</span><br><span class="line">    [fromVC removeFromParentViewController];</span><br><span class="line">    [toVC didMoveToParentViewController:weakSelf];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure><p>是iOS7以前的转场动画的实现方案，实验这段代码时，控制台报了如下警告：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unbalanced calls to begin/end appearance transitions for &lt;UIViewController: 0x7fc28fc1c080&gt;.</span><br></pre></td></tr></table></figure><p>通过查找原因，解决方案如下：</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ContainerVC.m</span></span><br><span class="line"></span><br><span class="line">[<span class="keyword">self</span> addChildViewController:toVC];</span><br><span class="line">[fromVC willMoveToParentViewController:<span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">__<span class="keyword">weak</span> <span class="keyword">id</span> weakSelf = <span class="keyword">self</span>;</span><br><span class="line">[<span class="keyword">self</span> transitionFromViewController:fromVC</span><br><span class="line">                  toViewController:toVC duration:<span class="number">0.3</span></span><br><span class="line">                           options:<span class="built_in">UIViewAnimationOptionTransitionCrossDissolve</span></span><br><span class="line">                        animations:^&#123;&#125;</span><br><span class="line">                        completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">    [fromVC removeFromParentViewController];</span><br><span class="line">    [toVC didMoveToParentViewController:weakSelf];</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure><p>只是去掉了关于<code>vc.view</code>的操作，解释在这里：<br><a href="https://stackoverflow.com/questions/22676938/unbalanced-calls-to-begin-end-appearance-transitions-for-uiviewcontroller" target="_blank" rel="noopener">Unbalanced calls to begin/end appearance transitions for \&lt;UIViewController></a></p><blockquote><p>Turns out transitionFromViewController:toViewController:duration:options:animations:completion: <strong>also adds the view.</strong></p></blockquote><blockquote><p>This method adds the second view controller’s view to the view hierarchy and then performs the animations defined in your animations block. After the animation completes, it removes the first view controller’s view from the view hierarchy.<br>Which means the addSubview needs to be adjusted accordingly.</p></blockquote><p>也就是说<code>transitionFromViewController:toViewController:duration:options:animations:completion:</code>这个方法内部已经做了关于<code>vc.view</code>的管理，我们不需要再自行添加和移除对应的view了。</p><hr><blockquote><p><strong>本文作者：</strong>霖溦<br><strong>本文链接：</strong><a href="https://kukumalucn.github.io" target="_blank" rel="noopener">https://kukumalucn.github.io</a><br><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> 许可协议。转载请注明出处！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Tips&quot;&gt;&lt;a href=&quot;#Tips&quot; class=&quot;headerlink&quot; title=&quot;Tips&quot;&gt;&lt;/a&gt;Tips&lt;/h1&gt;&lt;p&gt;最近学习转场动画时，参考了喵神的这篇文章：&lt;a href=&quot;https://onevcat.com/2013/10/vc-t
+      
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/"/>
+    
+      <category term="开发Tips" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/iOS/%E5%BC%80%E5%8F%91Tips/"/>
+    
+    
+      <category term="iOS" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/iOS/"/>
+    
+      <category term="转场动画" scheme="https://github.com/kukumaluCN/kukumaluCN.github.io/tags/%E8%BD%AC%E5%9C%BA%E5%8A%A8%E7%94%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>一种字符串关键字检索高亮的简易实现</title>
